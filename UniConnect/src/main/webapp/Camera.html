@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Camera Capture</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20px;
+        }
+        video, canvas {
+            border: 2px solid #333;
+            border-radius: 8px;
+            margin: 10px;
+            width: 320px;
+            height: 240px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Take a Photo</h2>
+    <video id="video" autoplay></video>
+    <canvas id="canvas"></canvas>
+    <br>
+    <button id="capture">Capture</button>
+    <button id="upload">Upload</button>
+
+    <script>
+        const video = document.getElementById("video");
+        const canvas = document.getElementById("canvas");
+        const captureButton = document.getElementById("capture");
+        const uploadButton = document.getElementById("upload");
+        const context = canvas.getContext("2d");
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                alert("Error accessing camera: " + err);
+            });
+
+        captureButton.addEventListener("click", () => {
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        });
+
+        uploadButton.addEventListener("click", () => {
+            const dataURL = canvas.toDataURL("image/png");
+            
+            fetch("UploadServlet", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "image=" + encodeURIComponent(dataURL)
+            })
+            .then(res => res.text())
+            .then(msg => alert(msg))
+            .catch(err => alert("Upload failed: " + err));
+        });
+    </script>
+</body>
+</html>

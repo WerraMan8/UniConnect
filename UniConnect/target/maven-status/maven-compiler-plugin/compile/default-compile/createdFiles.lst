@@ -1,0 +1,15 @@
+com\uniconnect\dao\UserDAO.class
+com\uniconnect\servlets\ChatServlet.class
+com\uniconnect\servlets\HomeServlet.class
+com\uniconnect\utils\DBConnection.class
+com\uniconnect\servlets\LogoutServlet.class
+com\uniconnect\chat\ChatEndpoint.class
+com\uniconnect\servlets\LoginServlet.class
+com\uniconnect\servlets\RegistrationServlet.class
+com\uniconnect\servlets\UploadServlet.class
+com\uniconnect\models\User.class
+com\uniconnect\models\Message.class
+com\uniconnect\JakartaRestConfiguration.class
+com\uniconnect\resources\JakartaEE10Resource.class
+com\uniconnect\dao\MessageDAO.class
+com\uniconnect\servlets\ConversationsServlet.class

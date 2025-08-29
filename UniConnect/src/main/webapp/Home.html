@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - UniConnect</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function logout() {
+            window.location.href = "LogoutServlet";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to UniConnect</h2>
+        <p id="welcomeMessage"></p>
+        <nav>
+            <ul>
+                <li><a href="Conversations.html">Conversations</a></li>
+                <li><a href="Camera.html">Camera</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
